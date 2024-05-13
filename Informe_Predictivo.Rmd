@@ -1,0 +1,66 @@
+---
+title: <span style="color:pink">**Modelo predictivo:** *Asistencia diaria de estudiantes*
+author: "ELIZABETH-MUÑOZ-VILLALOBOS-SENATI"
+date: "2024-05-13"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: tango
+    code_download: true
+---
+<img src="C:\Users\Usuario\Downloads\alumnos.jfif">  
+*Este es una imagen de alumnos en clase* 
+
+## PASO 1. IMPORTAR EL ARCHIVO ASISTENCIA ESTUDIANTES.csv
+```{r}
+library(readr)
+Asistencia_estudiantes <- read_csv("Asistencia estudiantes.csv")
+View(Asistencia_estudiantes)
+```
+
+## PASO 2. ENTENDER LA BASE DE DATOS
+
+```{r}
+str(Asistencia_estudiantes)
+summary(Asistencia_estudiantes)
+```
+
+### GRAFICO
+
+```{r}
+plot(Asistencia_estudiantes$Date, Asistencia_estudiantes$Enrolled, main = "TOTAL DE MATRICULADOS EN CADA FECHA", xlab = "Fecha", ylab = "Matriculados")
+plot(Asistencia_estudiantes$Absent, Asistencia_estudiantes$Enrolled, main = "TOTAL DE NO ASISTENTES EN CADA FECHA", xlab = "Fecha", ylab = "INASISTENTES")
+plot(Asistencia_estudiantes$Present, Asistencia_estudiantes$Enrolled, main = "TOTAL DE ASISTENTES EN CADA FECHA", xlab = "Fecha", ylab = "ASISTENTES")
+```
+
+## PASO 3. GENERAR LA REGRESION LINEAL
+
+```{r}
+regresion <- lm(Enrolled ~ Date + Absent + Present, data = Asistencia_estudiantes)
+summary(regresion)
+```
+
+## PASO 4, EVALUAR Y EN CASO NECESARIO, AJUSTAR LA REGRESION LINEAL
+
+```{r}
+regresion <- lm(Enrolled ~ Date + Absent + Present, data = Asistencia_estudiantes)
+summary(regresion)
+```
+
+## PASO 5. CONTRUIR UN MODELO DE PREDICCION
+
+```{r}
+datos_nuevos <- data.frame(Date = 20180905:20190626 , Absent = 14, Present =  167)
+View(datos_nuevos)
+predict(regresion, datos_nuevos)
+```
+
+## CONCLUSIONES
+
+La **regresión lineal** permite predecir el comportamiento de una variable a partir de otra. Esta herramienta puede ser de gran utilidad para negocios, debido a que permite conocer una predicción de asistentes y no asistentes, o cualquier variable que sea de interés para el usuario.  
+
+Considero que mediante este ejemplo se pueden llegar a ver las posibilidades que tiene la **regresión lineal**, como en este caso vimos una predicción de los alunmosasistentes e inasistente segun al numero de matriculados de este colegio.  
+
+Al haber visto clases de estadística anteriormente, puedo entender la gran utilidad y lo frecuente que es el uso de la **regresión lineal**; sin embargo, esta resulta la primera vez que lo hago de manera tan eficaz, como es aquí en R. 
