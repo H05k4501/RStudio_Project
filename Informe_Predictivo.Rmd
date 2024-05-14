@@ -1,14 +1,16 @@
 ---
-title: <span style="color:pink">**Modelo predictivo:** *Asistencia diaria de estudiantes*
+title: <span style="color:pink">**Modelo predictivo:** *Asistencia diaria de estudiantes*"
 author: "ELIZABETH-MUÑOZ-VILLALOBOS-SENATI"
 date: "2024-05-13"
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
     theme: united
     highlight: tango
     code_download: true
+  pdf_document:
+    toc: true
 ---
 <img src="C:\Users\Usuario\Downloads\alumnos.jfif">  
 *Este es una imagen de alumnos en clase* 

@@ -1,0 +1,27 @@
+#MODELO PREDICTIVO ASISTENCIA 
+#PASO1: IMPORTAR EL ARCHIVO ASISTENCIA ESTUDIANTES
+library(readr)
+Asistencia_estudiantes <- read_csv("Asistencia estudiantes.csv")
+View(Asistencia_estudiantes)
+
+#PASO2: ENTENDER LA BASE DE DATOS
+str(Asistencia_estudiantes)
+summary(Asistencia_estudiantes)
+#grafico
+plot(Asistencia_estudiantes$Date, Asistencia_estudiantes$Enrolled, main = "TOTAL DE MATRICULADOS EN CADA FECHA", xlab = "Fecha", ylab = "Matriculados")
+plot(Asistencia_estudiantes$Absent, Asistencia_estudiantes$Enrolled, main = "TOTAL DE NO ASISTENTES EN CADA FECHA", xlab = "Fecha", ylab = "INASISTENTES")
+plot(Asistencia_estudiantes$Present, Asistencia_estudiantes$Enrolled, main = "TOTAL DE ASISTENTES EN CADA FECHA", xlab = "Fecha", ylab = "ASISTENTES")
+
+#PASO3: GENERAR LA REGRESION LINEAL
+regresion <- lm(Enrolled ~ Date + Absent + Present, data = Asistencia_estudiantes)
+summary(regresion)
+#PASO4: EVALUAR Y EN CASO NECESARIO, AJUSTAR LA REGRESION LINEAL
+regresion <- lm(Enrolled ~ Date + Absent + Present, data = Asistencia_estudiantes)
+summary(regresion)
+
+#PASO5: CONTRUIR UN MODELO DE PREDICCION
+datos_nuevos <- data.frame(Date = 20180905:20190626 , Absent = 14, Present =  167)
+View(datos_nuevos)
+predict(regresion, datos_nuevos)
+
+#CONCLUSIONES
